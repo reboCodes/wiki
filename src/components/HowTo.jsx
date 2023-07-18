@@ -62,8 +62,8 @@ const HowTo = () => {
                     <p>Create the following files and folders from the project root:</p>
                     <ul>
                         <li>esbuild-conf.js</li>
-                        <li>index.html</li>
                         <li>src/</li>
+                        <li>src/index.html</li>
                         <li>src/components/</li>
                         <li>src/App.jsx</li>
                     </ul>
