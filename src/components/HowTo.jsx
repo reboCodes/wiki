@@ -4,14 +4,32 @@ import { CodeBlock, github } from 'react-code-blocks';
 const HowTo = () => {
 
     const esbuild_content = 
-    `const res = require('esbuild').buildSync({
-       entryPoints: ['src/App.jsx'],
-       bundle: true,
-       minify: true,
+    `import esbuild from 'esbuild'
+
+    await esbuild.build({
+      entryPoints: ['src/App.jsx'],
+      bundle: true,
+      minify: true,
+      format: 'cjs',
+      sourcemap: true,
+      outfile: 'dist/output.js',
+    });`
+
+    const esbuild_multi_page_content = 
+    `import esbuild from 'esbuild'
+
+    const build = async () => {
+      const result = await esbuild.build({
+        entryPoints: () => ['pages/**/*.jsx'],
+        bundle: true,
+        minify: true,
         format: 'cjs',
         sourcemap: true,
-        outfile: 'dist/output.js',
-    })`
+        outfile: (entryPoint) => \`dist/\${entryPoint.replace('.jsx', '.js')}\`,
+      });
+    };
+    
+    build();`
 
     const index_html_content = 
     `<!DOCTYPE html>
@@ -45,17 +63,19 @@ const HowTo = () => {
     return(
         <div className='how-to'>
 
-            <h1>How to setup a Reactjs / esbuild app from scratch:</h1>
+            <div className='header'>
+                <h1>How to setup a Reactjs / esbuild app from scratch:</h1>
+            </div>
 
-            <ol>
+            <ul>
 
                 <li>
                     <h3>Install the packages</h3>
                     <p>Create a folder for your project. Inside the folder initilize git and npm.</p>
-                    <p>git init</p>
-                    <p>npm init -y</p>
+                    <p className='shell'>git init</p>
+                    <p className='shell'>npm init -y</p>
                     <p>Install react, react-dom, and esbuild</p>
-                    <p>npm install react react-dom esbuild</p>
+                    <p className='shell'>npm install react react-dom esbuild</p>
                 </li>
                 <li>
                     <h3>Setup the structure</h3>
@@ -75,7 +95,7 @@ const HowTo = () => {
                     <CodeBlock
                         className = "codeblock"
                         text = {index_html_content}
-                        language = 'javascript'
+                        language = 'html'
                         showLineNumbers = {false}
                         theme = {github}
                     />
@@ -83,6 +103,16 @@ const HowTo = () => {
                     <CodeBlock
                         className = "codeblock"
                         text = {esbuild_content}
+                        language = 'javascript'
+                        showLineNumbers = {false}
+                        theme = {github}
+                    />
+                    <p>If you want to have a separate output file for each jsx entry point in
+                        a folder, use this code instead. (This uses src/pages/ as an example)
+                    </p>
+                    <CodeBlock
+                        className = "codeblock"
+                        text = {esbuild_multi_page_content}
                         language = 'javascript'
                         showLineNumbers = {false}
                         theme = {github}
@@ -100,10 +130,10 @@ const HowTo = () => {
                 <li>
                     <h3>Run the app!</h3>
                     <p>To run the app, start a local webserver pointing to index.html then run the command:</p>
-                    <p>node esbuild-conf.js</p>
+                    <p className='shell'>node esbuild-conf.js</p>
                 </li>
 
-            </ol>
+            </ul>
 
         </div>
     );

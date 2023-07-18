@@ -2,18 +2,22 @@
   "name": "notesapp",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "copy:html": "cp src/index.html build/index.html",
+    "build:sass": "sass --no-source-map src/style:build/css",
+    "build:js": "node esbuild.conf.js --minify:true --format:cjs",
+    "build": "npm run build:sass && npm run build:js && npm run copy:html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap-css-only": "^4.4.1",
     "esbuild": "^0.18.13",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.63.6"
   }
 }
