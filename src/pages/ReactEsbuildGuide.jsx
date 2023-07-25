@@ -1,7 +1,7 @@
 import React from 'react';
 import { CodeBlock, github } from 'react-code-blocks';
 
-const HowTo = () => {
+const ReactEsbuildGuide = () => {
 
     const esbuild_content = 
     `import esbuild from 'esbuild'
@@ -139,4 +139,4 @@ const HowTo = () => {
     );
 };
 
-export default HowTo;
+export default ReactEsbuildGuide;

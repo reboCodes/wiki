@@ -2,8 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import HowTo from './pages/HowTo';
-import Test from './pages/Test';
+// import pages
+import ReactEsbuildGuide from './pages/ReactEsbuildGuide';
+import Home from './pages/Home';
+
+// import components
 import Navbar from "./components/Navbar";
 
 const App = () => {
@@ -11,8 +14,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navbar />}>
-          <Route path="/" element={<HowTo />} />
-          <Route path="/react-esbuild-guide" element={<Test />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/react-esbuild-guide" element={<ReactEsbuildGuide />} />
         </Route>
       </Routes>
     </BrowserRouter>
