@@ -8,13 +8,15 @@
     "copy:html": "cp src/index.html build/index.html",
     "build:sass": "sass --no-source-map src/style:build/css",
     "build:js": "node esbuild.conf.js --minify:true --format:cjs",
-    "build": "npm run build:sass && npm run build:js && npm run copy:html"
+    "build": "npm run build:sass && npm run build:js && npm run copy:html",
+    "start": "npm run build && node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.18.13",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-code-blocks": "^0.1.0",
     "react-dom": "^18.2.0",
